@@ -28,6 +28,8 @@ body {
   padding: 0rem 1rem;
   background-color: var(--background-color);
   border-radius: 0 0 0.5rem 0.5rem;
+  position: sticky;
+  top: 0;
 }
 
 .header__container {
@@ -85,17 +87,41 @@ body {
   border-radius: 1rem;
 }
 
-.exercicio-titulo h3 {
+.exercicio-titulo {
   font-family: var(--font-family);
   font-size: 1rem;
   font-weight: 500;
+  position: relative;
+}
+
+.exercicio-titulo::after {
+  content: "";
+  background-image: url("../assets/open-drop.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 175px;
+}
+
+.exercicio-titulo.active::after {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .treino__card-dropdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.treino__card-dropdown.active {
+  height: auto;
+  opacity: 1;
 }
 
 .content__container-list {
@@ -111,6 +137,7 @@ body {
   align-items: start;
   justify-content: space-evenly;
   gap: 0.5rem;
+  padding: 1rem;
 }
 
 .treino__card-dropdown-item input {
